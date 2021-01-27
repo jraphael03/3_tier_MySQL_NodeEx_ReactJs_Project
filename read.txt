@@ -1,9 +1,15 @@
-CLIENT
+FRONTEND
 npx create-react-app frontend
+npm install axios
+npm install cors
+npm install react-hook-form
+npm install react-router-dom
+npm install react-bootstrap bootstrap
+npm i --save @fortawesome/fontawesome-svg-core
+  npm install --save @fortawesome/free-solid-svg-icons
+  npm install --save @fortawesome/react-fontawesome
 
-
-
-SERVER
+BACKEND
 npm init -y
 npm install mysql
 npm install body-parser
@@ -12,6 +18,6 @@ npm install nodemon
 npm install dotenv
 npm install axios
 npm install cors
-npm install react-hook-form
+
 
 

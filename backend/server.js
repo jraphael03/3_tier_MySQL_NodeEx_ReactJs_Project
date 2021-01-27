@@ -11,7 +11,8 @@ const port = 5000;
 
 app.use(express.json()); // parses incoming requests with JSON payloads
 app.use(cors());        //allows clientside to make requests
-
+app.use( bodyParser.urlencoded({ extended: true }));
+app.use( bodyParser.json());
 
 //create connection to database
 const db = mysql.createPool({
@@ -30,6 +31,20 @@ app.get("/questions", (req,res) => {                            //sends data to 
             res.send(result);
         }
     });
+});
+
+app.get("/questions/:cid", (req, res) => {
+  db.query(
+    "SELECT FROM questions WHERE cid = ?",
+    req.params.cid,
+    (err, result) => {
+      if (err) {
+        console .log(err);
+      } else {
+        res.send(result);
+      }
+    }
+  );
 });
 
 app.post("/questions", (req, res) => {                         //sends data to the database
@@ -73,6 +88,12 @@ app.delete('/questions/:qid', (req, res) => {
     )
 })
 
+// express route
+const home = (req, res) => {
+    res.send('Hello World!')
+}
+
+app.get('/', home)  //localhost:5000
 
 const listener = app.listen(process.env.PORT || 5000, () => {
     console.log('App is listening on port ' + listener.address().port)
